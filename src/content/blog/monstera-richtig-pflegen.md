@@ -1,6 +1,6 @@
 ---
-title: "Monstera richtig pflegen: Der komplette Guide"
-description: "Alles über Standort, Gießen, Düngen und Umtopfen deiner Monstera deliciosa – mit konkreten Angaben statt vagen Tipps."
+title: "Monstera richtig pflegen: Ultimativer Guide für gesunde Zimmerpflanzen"
+description: "Lerne, wie du deine Monstera deliciosa perfekt pflegst – inklusive Standort, Gießen, Düngen & Umtopfen für kräftiges Wachstum und üppige Blätter. Praktische Tipps für Anfänger & Pflanzenfans."
 category: "Zimmerpflanzen"
 categorySlug: "zimmerpflanzen"
 tags: ["Monstera", "Zimmerpflanzen", "Pflanzenpflege"]
