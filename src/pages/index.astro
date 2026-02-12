@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Philosophy from '../components/Philosophy.astro';
+import Comparison from '../components/Comparison.astro';
+import Stats from '../components/Stats.astro';
+import Categories from '../components/Categories.astro';
+import LatestPosts from '../components/LatestPosts.astro';
+import CallToAction from '../components/CallToAction.astro';
+---
+
+<BaseLayout
+  title="Grünzeug – Dein Pflanzen-Blog mit Substanz"
+  description="Fundierte Garten- und Pflanzentipps. Praxisnah, ehrlich, ohne Blumenmärchen."
+>
+  <Hero />
+  <Philosophy />
+  <Comparison />
+  <Stats />
+  <Categories />
+  <LatestPosts />
+  <CallToAction />
+</BaseLayout>

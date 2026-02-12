@@ -1,0 +1,79 @@
+---
+const comparisons = [
+  {
+    bad: {
+      title: '„Gieß deine Pflanzen regelmäßig!"',
+      text: 'Vage Tipps ohne Mengenangabe, Zeitraum oder Pflanzentyp. Funktioniert für nichts.',
+    },
+    good: {
+      title: '„Monstera: Alle 7–10 Tage, Substrat-Check mit Fingerprobe."',
+      text: 'Konkrete Angaben pro Pflanze mit Methode zur Selbstkontrolle.',
+    },
+  },
+  {
+    bad: {
+      title: '„Kräuter wachsen auf jeder Fensterbank."',
+      text: 'Pauschale Aussage. Basilikum stirbt am Nordfenster, Rosmarin braucht kaum Wasser.',
+    },
+    good: {
+      title: '„Basilikum: 6h Sonne, Südfenster, nie unter 15 °C."',
+      text: 'Standort-Steckbrief pro Kraut mit konkreten Anforderungen.',
+    },
+  },
+  {
+    bad: {
+      title: '„Im Frühling solltest du düngen."',
+      text: 'Aber was? Wie viel? Welchen Dünger? Keine brauchbaren Infos.',
+    },
+    good: {
+      title: '„NPK 7-3-6 für Grünpflanzen, alle 14 Tage März–September."',
+      text: 'Konkreter Düngeplan mit Nährstoffverhältnis und Zeitraum.',
+    },
+  },
+];
+---
+
+<section class="py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg-light">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 text-sm font-medium text-primary tracking-wide uppercase mb-4">
+        <span class="w-6 h-px bg-primary"></span>
+        Der Unterschied
+        <span class="w-6 h-px bg-primary"></span>
+      </span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-slate-900">
+        Andere Blogs vs. Hier.
+      </h2>
+    </div>
+
+    <div class="space-y-6">
+      {comparisons.map((pair) => (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Bad -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border-l-4 border-accent-red">
+            <span class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-red mb-3">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Andere Blogs
+            </span>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">{pair.bad.title}</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">{pair.bad.text}</p>
+          </div>
+
+          <!-- Good -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border-l-4 border-accent-green">
+            <span class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-green mb-3">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Grünzeug
+            </span>
+            <h3 class="text-base font-semibold text-slate-900 mb-2">{pair.good.title}</h3>
+            <p class="text-sm text-slate-500 leading-relaxed">{pair.good.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

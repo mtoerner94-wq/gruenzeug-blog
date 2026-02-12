@@ -1,0 +1,35 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  tags: string[];
+  href: string;
+}
+
+const { icon, title, description, tags, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+>
+  <span class="text-3xl block mb-4">{icon}</span>
+  <h3 class="text-xl font-semibold text-slate-900 group-hover:text-primary transition-colors duration-200">
+    {title}
+  </h3>
+  <p class="text-slate-600 mt-2 text-sm leading-relaxed">{description}</p>
+  <div class="flex flex-wrap gap-2 mt-4">
+    {tags.map((tag) => (
+      <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+        {tag}
+      </span>
+    ))}
+  </div>
+  <span class="inline-flex items-center gap-1 text-sm font-medium text-primary mt-5 group-hover:gap-2 transition-all duration-200">
+    Entdecken
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+    </svg>
+  </span>
+</a>

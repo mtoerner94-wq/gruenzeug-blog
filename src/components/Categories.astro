@@ -1,0 +1,72 @@
+---
+import CategoryCard from './CategoryCard.astro';
+
+const categories = [
+  {
+    icon: '🪴',
+    title: 'Zimmerpflanzen',
+    description: 'Monstera, Ficus & Co. – Pflege, Standort und Schädlinge im Detail.',
+    tags: ['Tropisch', 'Sukkulenten'],
+    href: '/zimmerpflanzen/',
+  },
+  {
+    icon: '🌱',
+    title: 'Garten & Beete',
+    description: 'Beete anlegen, Boden verstehen, Fruchtfolge planen.',
+    tags: ['Hochbeet', 'Kompost'],
+    href: '/garten-beete/',
+  },
+  {
+    icon: '🌿',
+    title: 'Balkon & Terrasse',
+    description: 'Platzsparend gärtnern – auch auf 3 Quadratmetern.',
+    tags: ['Kübelpflanzen', 'Sichtschutz'],
+    href: '/balkon-terrasse/',
+  },
+  {
+    icon: '🌶️',
+    title: 'Kräuter & Gemüse',
+    description: 'Vom Samen bis zur Ernte – praxisnah und saisonal.',
+    tags: ['Selbstversorgung', 'Bio'],
+    href: '/kraeuter-gemuese/',
+  },
+  {
+    icon: '💧',
+    title: 'Pflanzenpflege',
+    description: 'Gießen, Düngen, Umtopfen, Schneiden – die Basics richtig machen.',
+    tags: ['Schädlinge', 'Substrat'],
+    href: '/pflanzenpflege/',
+  },
+  {
+    icon: '📅',
+    title: 'Saisonales',
+    description: 'Monatsaufgaben, Aussaatkalender und saisonale Tipps.',
+    tags: ['Frühling', 'Herbst'],
+    href: '/saisonales/',
+  },
+];
+---
+
+<section id="kategorien" class="py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-bg-light">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 text-sm font-medium text-primary tracking-wide uppercase mb-4">
+        <span class="w-6 h-px bg-primary"></span>
+        Themenbereiche
+        <span class="w-6 h-px bg-primary"></span>
+      </span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-slate-900">
+        Alle Themenbereiche
+      </h2>
+      <p class="text-slate-500 mt-4 text-lg">
+        Fundierte Artikel zu deinen Lieblingsthemen
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((cat) => (
+        <CategoryCard {...cat} />
+      ))}
+    </div>
+  </div>
+</section>

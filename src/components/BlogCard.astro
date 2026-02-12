@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  categorySlug: string;
+  date: Date;
+  href: string;
+  image?: string;
+  imageAlt?: string;
+  featured?: boolean;
+}
+
+const { title, description, category, categorySlug, date, href, image, imageAlt, featured = false } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+// Generate gradient colors based on category
+const gradients: Record<string, string> = {
+  'zimmerpflanzen': 'from-emerald-100 to-teal-50',
+  'garten-beete': 'from-lime-100 to-green-50',
+  'balkon-terrasse': 'from-cyan-100 to-sky-50',
+  'kraeuter-gemuese': 'from-amber-100 to-yellow-50',
+  'pflanzenpflege': 'from-blue-100 to-indigo-50',
+  'saisonales': 'from-orange-100 to-red-50',
+};
+
+const gradient = gradients[categorySlug] || 'from-emerald-100 to-teal-50';
+---
+
+<a href={href} class="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+  {featured && (
+    <div class={`aspect-video bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+      <span class="text-5xl opacity-50">🌿</span>
+    </div>
+  )}
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="text-xs font-medium uppercase tracking-wider text-primary">{category}</span>
+      <span class="text-slate-300">·</span>
+      <time class="text-xs text-slate-400">{formattedDate}</time>
+    </div>
+    <h3 class="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors duration-200 line-clamp-2">
+      {title}
+    </h3>
+    <p class="text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">{description}</p>
+    <span class="inline-flex items-center gap-1 text-sm font-medium text-primary mt-4 group-hover:gap-2 transition-all duration-200">
+      Weiterlesen
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </span>
+  </div>
+</a>

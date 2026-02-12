@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featuredPosts = posts.filter((p) => p.data.featured).slice(0, 2);
+const recentPosts = posts.filter((p) => !p.data.featured).slice(0, 3);
+---
+
+<section id="neueste" class="py-24 md:py-32 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 text-sm font-medium text-primary tracking-wide uppercase mb-4">
+        <span class="w-6 h-px bg-primary"></span>
+        Aktuelles
+        <span class="w-6 h-px bg-primary"></span>
+      </span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-slate-900">
+        Neuste Beiträge
+      </h2>
+    </div>
+
+    <!-- Featured Posts (large) -->
+    {featuredPosts.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        {featuredPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            categorySlug={post.data.categorySlug}
+            date={post.data.date}
+            href={`/${post.data.categorySlug}/${post.id}/`}
+            image={post.data.image}
+            imageAlt={post.data.imageAlt}
+            featured={true}
+          />
+        ))}
+      </div>
+    )}
+
+    <!-- Recent Posts (smaller) -->
+    {recentPosts.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {recentPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            categorySlug={post.data.categorySlug}
+            date={post.data.date}
+            href={`/${post.data.categorySlug}/${post.id}/`}
+            image={post.data.image}
+            imageAlt={post.data.imageAlt}
+            featured={false}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</section>

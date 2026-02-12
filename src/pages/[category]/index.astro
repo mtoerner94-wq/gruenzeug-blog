@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const categories = [...new Set(posts.map((p) => p.data.categorySlug))];
+
+  return categories.map((categorySlug) => {
+    const filtered = posts.filter((p) => p.data.categorySlug === categorySlug);
+    const categoryName = filtered[0].data.category;
+    return {
+      params: { category: categorySlug },
+      props: { posts: filtered, categoryName },
+    };
+  });
+}
+
+const { posts, categoryName } = Astro.props;
+const sortedPosts = posts.sort(
+  (a: any, b: any) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title={`${categoryName} – Grünzeug`} description={`Alle Artikel zum Thema ${categoryName}`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm text-slate-400 mb-8">
+      <a href="/" class="hover:text-primary transition-colors">Startseite</a>
+      <span class="mx-2">/</span>
+      <span class="text-slate-900">{categoryName}</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900">{categoryName}</h1>
+      <p class="text-lg text-slate-500 mt-4">
+        Alle Artikel zum Thema {categoryName}
+      </p>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedPosts.map((post: any) => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          category={post.data.category}
+          categorySlug={post.data.categorySlug}
+          date={post.data.date}
+          href={`/${post.data.categorySlug}/${post.id}/`}
+          image={post.data.image}
+          imageAlt={post.data.imageAlt}
+          featured={post.data.featured}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

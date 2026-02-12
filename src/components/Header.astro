@@ -1,0 +1,100 @@
+---
+const navItems = [
+  { label: 'Zimmerpflanzen', href: '/zimmerpflanzen/' },
+  { label: 'Garten & Beete', href: '/garten-beete/' },
+  { label: 'Balkon & Terrasse', href: '/balkon-terrasse/' },
+  { label: 'Kräuter & Gemüse', href: '/kraeuter-gemuese/' },
+  { label: 'Pflanzenpflege', href: '/pflanzenpflege/' },
+  { label: 'Saisonales', href: '/saisonales/' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 glass">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="text-xl font-bold text-primary-dark tracking-tight">
+        Grünzeug<span class="text-accent-green">.</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-6">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-slate-600 hover:text-primary transition-colors duration-200"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 -mr-2 text-slate-600 hover:text-primary transition-colors"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h12" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="hidden fixed inset-0 bg-white z-50 flex flex-col"
+  >
+    <div class="flex items-center justify-between px-4 sm:px-6 h-16">
+      <a href="/" class="text-xl font-bold text-primary-dark tracking-tight">
+        Grünzeug<span class="text-accent-green">.</span>
+      </a>
+      <button
+        id="mobile-menu-close"
+        class="p-2 -mr-2 text-slate-600 hover:text-primary transition-colors"
+        aria-label="Menü schließen"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav class="flex-1 flex flex-col items-center justify-center gap-8">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-2xl font-semibold text-slate-800 hover:text-primary transition-colors duration-200"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const close = document.getElementById('mobile-menu-close');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+
+  close?.addEventListener('click', () => {
+    menu?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+
+  // Close on link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
