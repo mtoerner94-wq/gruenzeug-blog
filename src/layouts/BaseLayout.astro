@@ -49,14 +49,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://gruenzeu
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
 
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
